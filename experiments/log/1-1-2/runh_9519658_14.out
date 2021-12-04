@@ -1,0 +1,93 @@
+SLURM_JOBID:  9519673
+SLURM_ARRAY_JOB_ID:  9519658
+SLURM_ARRAY_TASK_ID:  14
+Sat Dec  4 19:32:16 2021       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 460.80       Driver Version: 460.80       CUDA Version: 11.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  GeForce RTX 208...  Off  | 00000000:3E:00.0 Off |                  N/A |
+| 27%   37C    P8    24W / 250W |      0MiB / 11019MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2020 NVIDIA Corporation
+Built on Mon_Oct_12_20:09:46_PDT_2020
+Cuda compilation tools, release 11.1, V11.1.105
+Build cuda_11.1.TC455_06.29190527_0
+14
+cuda:0
+[32;1mLogging data to ../data/1-1-2/sac_poly1_Ant-v2/sac_poly1_Ant-v2_s0/progress.txt[0m
+[36;1mSaving config:
+[0m
+{
+    "alpha":	1,
+    "auto_alpha":	false,
+    "batch_size":	256,
+    "debug":	false,
+    "delay_update_steps":	"auto",
+    "device":	"cuda:0",
+    "env_name":	"Ant-v2",
+    "epochs":	1000,
+    "evaluate_bias":	true,
+    "exp_name":	"sac_poly1_Ant-v2",
+    "gamma":	0.99,
+    "hidden_sizes":	[
+        256,
+        256
+    ],
+    "logger":	{
+        "<redq.utils.logx.EpochLogger object at 0x7f03a4caf700>":	{
+            "epoch_dict":	{},
+            "exp_name":	"sac_poly1_Ant-v2",
+            "first_row":	true,
+            "log_current_row":	{},
+            "log_headers":	[],
+            "output_dir":	"../data/1-1-2/sac_poly1_Ant-v2/sac_poly1_Ant-v2_s0",
+            "output_file":	{
+                "<_io.TextIOWrapper name='../data/1-1-2/sac_poly1_Ant-v2/sac_poly1_Ant-v2_s0/progress.txt' mode='w' encoding='UTF-8'>":	{
+                    "mode":	"w"
+                }
+            }
+        }
+    },
+    "logger_kwargs":	{
+        "exp_name":	"sac_poly1_Ant-v2",
+        "output_dir":	"../data/1-1-2/sac_poly1_Ant-v2/sac_poly1_Ant-v2_s0"
+    },
+    "lr":	0.0003,
+    "max_ep_len":	1000,
+    "n_evals_per_epoch":	1,
+    "n_mc_cutoff":	350,
+    "n_mc_eval":	1000,
+    "num_Q":	2,
+    "num_min":	2,
+    "policy_update_delay":	20,
+    "polyak":	0.995,
+    "q_target_mode":	"min",
+    "replay_size":	1000000,
+    "reseed_each_epoch":	true,
+    "seed":	0,
+    "start_steps":	5000,
+    "steps_per_epoch":	1000,
+    "target_entropy":	"mbpo",
+    "total_steps":	1000001,
+    "utd_ratio":	1
+}
+Import error. Trying to rebuild mujoco_py.
+running build_ext
+building 'mujoco_py.cymj' extension
+gcc -pthread -B /gpfsnyu/home/yh2689/.conda/envs/keith/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py -I/gpfsnyu/home/yh2689/.mujoco/mujoco210/include -I/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/numpy/core/include -I/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/vendor/egl -I/gpfsnyu/home/yh2689/.conda/envs/keith/include/python3.8 -c /gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/cymj.c -o /gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/generated/_pyxbld_2.0.2.13_38_linuxgpuextensionbuilder/temp.linux-x86_64-3.8/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/cymj.o -fopenmp -w
+gcc -pthread -B /gpfsnyu/home/yh2689/.conda/envs/keith/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py -I/gpfsnyu/home/yh2689/.mujoco/mujoco210/include -I/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/numpy/core/include -I/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/vendor/egl -I/gpfsnyu/home/yh2689/.conda/envs/keith/include/python3.8 -c /gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/gl/eglshim.c -o /gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/generated/_pyxbld_2.0.2.13_38_linuxgpuextensionbuilder/temp.linux-x86_64-3.8/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/gl/eglshim.o -fopenmp -w
+DONE

@@ -103,11 +103,11 @@ class REDQSACAgent(object):
                 action = env.action_space.sample()
         return action
 
-    def get_test_action(self, obs):
+    def get_test_action(self, obs, deterministic=True):
         # given an observation, output a deterministic action in numpy form
         with torch.no_grad():
             obs_tensor = torch.Tensor(obs).unsqueeze(0).to(self.device)
-            action_tensor = self.policy_net.forward(obs_tensor, deterministic=True,
+            action_tensor = self.policy_net.forward(obs_tensor, deterministic=deterministic,
                                          return_log_prob=False)[0]
             action = action_tensor.cpu().numpy().reshape(-1)
         return action

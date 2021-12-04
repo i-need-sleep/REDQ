@@ -1,0 +1,82 @@
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
+In file included from /gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/gl/egl.h:39:0,
+                 from /gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/gl/eglshim.c:2:
+/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/gl/eglplatform.h:99:10: fatal error: X11/Xlib.h: No such file or directory
+ #include <X11/Xlib.h>
+          ^~~~~~~~~~~~
+compilation terminated.
+Traceback (most recent call last):
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/unixccompiler.py", line 117, in _compile
+    self.spawn(compiler_so + cc_args + [src, '-o', obj] +
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/ccompiler.py", line 910, in spawn
+    spawn(cmd, dry_run=self.dry_run)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/spawn.py", line 36, in spawn
+    _spawn_posix(cmd, search_path, dry_run=dry_run)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/spawn.py", line 157, in _spawn_posix
+    raise DistutilsExecError(
+distutils.errors.DistutilsExecError: command 'gcc' failed with exit status 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "train_redq_sac_exp1-1-2.py", line 238, in <module>
+    redq_sac(env_name, seed=seed, epochs=epochs,
+  File "train_redq_sac_exp1-1-2.py", line 74, in redq_sac
+    env, test_env, bias_eval_env = env_fn(), env_fn(), env_fn()
+  File "train_redq_sac_exp1-1-2.py", line 73, in <lambda>
+    env_fn = lambda: gym.make(env_name)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/gym/envs/registration.py", line 235, in make
+    return registry.make(id, **kwargs)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/gym/envs/registration.py", line 129, in make
+    env = spec.make(**kwargs)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/gym/envs/registration.py", line 89, in make
+    cls = load(self.entry_point)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/gym/envs/registration.py", line 27, in load
+    mod = importlib.import_module(mod_name)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/gym/envs/mujoco/__init__.py", line 1, in <module>
+    from gym.envs.mujoco.mujoco_env import MujocoEnv
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/gym/envs/mujoco/mujoco_env.py", line 12, in <module>
+    import mujoco_py
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/__init__.py", line 2, in <module>
+    from mujoco_py.builder import cymj, ignore_mujoco_warnings, functions, MujocoException
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/builder.py", line 504, in <module>
+    cymj = load_cython_ext(mujoco_path)
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/builder.py", line 110, in load_cython_ext
+    cext_so_path = builder.build()
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/builder.py", line 226, in build
+    built_so_file_path = self._build_impl()
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/builder.py", line 296, in _build_impl
+    so_file_path = super()._build_impl()
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/builder.py", line 249, in _build_impl
+    dist.run_commands()
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/dist.py", line 966, in run_commands
+    self.run_command(cmd)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/dist.py", line 985, in run_command
+    cmd_obj.run()
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/Cython/Distutils/old_build_ext.py", line 186, in run
+    _build_ext.build_ext.run(self)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/command/build_ext.py", line 340, in run
+    self.build_extensions()
+  File "/gpfsnyu/home/yh2689/rl_course/mujoco-py/mujoco_py/builder.py", line 149, in build_extensions
+    build_ext.build_extensions(self)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/Cython/Distutils/old_build_ext.py", line 195, in build_extensions
+    _build_ext.build_ext.build_extensions(self)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/command/build_ext.py", line 449, in build_extensions
+    self._build_extensions_serial()
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/command/build_ext.py", line 474, in _build_extensions_serial
+    self.build_extension(ext)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/command/build_ext.py", line 528, in build_extension
+    objects = self.compiler.compile(sources,
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/ccompiler.py", line 574, in compile
+    self._compile(obj, src, ext, cc_args, extra_postargs, pp_opts)
+  File "/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/distutils/unixccompiler.py", line 120, in _compile
+    raise CompileError(msg)
+distutils.errors.CompileError: command 'gcc' failed with exit status 1

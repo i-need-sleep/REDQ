@@ -59,6 +59,7 @@ def redq_sac(env_name, seed=0, epochs='mbpo', steps_per_epoch=1000,
 
     # use gpu if available
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print(device)
     # set number of epoch
     if epochs == 'mbpo' or epochs < 0:
         epochs = mbpo_epoches[env_name]

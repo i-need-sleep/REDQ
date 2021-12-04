@@ -20,7 +20,7 @@ def redq_sac(env_name, seed=0, epochs='mbpo', steps_per_epoch=1000,
              utd_ratio=20, num_Q=10, num_min=2, q_target_mode='min',
              policy_update_delay=20,
              # following are bias evaluation related
-             evaluate_bias=True, n_mc_eval=1000, n_mc_cutoff=350, reseed_each_epoch=True
+             evaluate_bias=True, n_mc_eval=1000, n_mc_cutoff=350, reseed_each_epoch=True, eval="deterministic"
              ):
     """
     :param env_name: name of the gym environment
@@ -70,7 +70,7 @@ def redq_sac(env_name, seed=0, epochs='mbpo', steps_per_epoch=1000,
     logger.save_config(locals())
 
     """set up environment and seeding"""
-    env_fn = lambda: gym.make(args.env)
+    env_fn = lambda: gym.make(env_name)
     env, test_env, bias_eval_env = env_fn(), env_fn(), env_fn()
     # seed torch and numpy
     torch.manual_seed(seed)
@@ -121,7 +121,11 @@ def redq_sac(env_name, seed=0, epochs='mbpo', steps_per_epoch=1000,
 
     for t in range(total_steps):
         # get action from agent
-        a = agent.get_exploration_action(o, env)
+        if eval == 'deterministic':
+            deterministic = True
+        elif eval == 'stocastic':
+            deterministic = False
+        a = agent.get_exploration_action(o, env, deterministic=deterministic)
         # Step the env, get next observation, reward and done signal
         o2, r, d, _ = env.step(a)
 
@@ -200,14 +204,42 @@ if __name__ == '__main__':
     parser.add_argument('--exp_name', type=str, default='redq_sac')
     parser.add_argument('--data_dir', type=str, default='../data/')
     parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--setting', type=int, default=0)
     args = parser.parse_args()
 
-    # modify the code here if you want to use a different naming scheme
-    exp_name_full = args.exp_name + '_%s' % args.env
+    epochs = 1000
+    if args.debug:
+        epochs = 15
 
-    # specify experiment name, seed and data_dir.
-    # for example, for seed 0, the progress.txt will be saved under data_dir/exp_name/exp_name_s0
-    logger_kwargs = setup_logger_kwargs(exp_name_full, args.seed, args.data_dir)
+    # since we want SAC, set these values so that REDQ becomes SAC, in the original SAC paper, they also do not use adaptive
+    # SAC entropy, so we set auto_alpha to False, and set alpha=0.2, which is the value they used for Ant and Hopper
+    # this information can be found in the SAC paper and in their hyperparameter table
+    utd_ratio = 1
+    num_Q = 2
+    auto_alpha = False
+    alpha=0.2
 
-    redq_sac(args.env, seed=args.seed, epochs=args.epochs,
-             logger_kwargs=logger_kwargs, debug=args.debug)
+    env_names = ['Hopper-v2', 'Ant-v2']
+    eval_list = ['deterministic', 'stocastic']
+    seed_list = [0, 1]
+
+    setting_to_run = args.setting
+    current_setting = 0
+
+    exp_name_prefix = 'sac'
+
+    for eval in eval_list:
+        for env_name in env_names:
+            for seed in seed_list:
+                if setting_to_run == current_setting: # only happens when setting value matches
+                    # modify the code here if you want to use a different naming scheme
+                    exp_name_full = '%s_poly%s_%s' % (exp_name_prefix, str(eval), env_name)
+
+                    # specify experiment name, seed and data_dir.
+                    # for example, for seed 0, the progress.txt will be saved under data_dir/exp_name/exp_name_s0
+                    logger_kwargs = setup_logger_kwargs(exp_name_full, seed, args.data_dir+"1-1-3/")
+
+                    redq_sac(env_name, seed=seed, epochs=epochs,
+                         logger_kwargs=logger_kwargs, debug=args.debug,
+                             utd_ratio=utd_ratio, num_Q=num_Q, auto_alpha=False, alpha=alpha, eval=eval)
+                current_setting += 1
