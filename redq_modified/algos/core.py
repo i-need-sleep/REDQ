@@ -244,7 +244,7 @@ def soft_update_model1_with_model2(model1, model2, rou):
     for model1_param, model2_param in zip(model1.parameters(), model2.parameters()):
         model1_param.data.copy_(rou*model1_param.data + (1-rou)*model2_param.data)
 
-def test_agent(agent, test_env, max_ep_len, logger, n_eval=1):
+def test_agent(agent, test_env, max_ep_len, logger, deterministic=True, n_eval=1):
     """
     This will test the agent's performance by running <n_eval> episodes
     During the runs, the agent should only take deterministic action
@@ -261,7 +261,7 @@ def test_agent(agent, test_env, max_ep_len, logger, n_eval=1):
         o, r, d, ep_ret, ep_len = test_env.reset(), 0, False, 0, 0
         while not (d or (ep_len == max_ep_len)):
             # Take deterministic actions at test time
-            a = agent.get_test_action(o)
+            a = agent.get_test_action(o, deterministic=deterministic)
             o, r, d, _ = test_env.step(a)
             ep_ret += r
             ep_len += 1
