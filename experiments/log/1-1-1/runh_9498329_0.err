@@ -1,2 +1,6 @@
 /var/spool/slurmd/job9498330/slurm_script: line 27: nvidia-smi: command not found
 DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
+/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/numpy/core/_methods.py:244: RuntimeWarning: overflow encountered in reduce
+  ret = umr_sum(x, axis, dtype, out, keepdims=keepdims, where=where)
+/gpfsnyu/home/yh2689/.conda/envs/keith/lib/python3.8/site-packages/numpy/core/_methods.py:233: RuntimeWarning: overflow encountered in multiply
+  x = um.multiply(x, x, out=x)

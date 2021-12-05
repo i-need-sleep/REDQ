@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --verbose
-#SBATCH -p aquila,parallel
+#SBATCH -p aquila
 #SBATCH --time=72:00:00
 #SBATCH --nodes=1
 #SBATCH --mem=12GB
@@ -25,7 +25,7 @@ module load anaconda3 cuda/11.1.1
 
 nvidia-smi
 nvcc --version
-cd /gpfsnyu/scratch/yh2689/REDQ-student/experiments
+cd /gpfsnyu/scratch/yh2689/REDQ-student
 
 source deactivate
 source /gpfsnyu/packages/anaconda3/5.2.0/bin/activate keith
