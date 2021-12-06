@@ -12,8 +12,7 @@
 #SBATCH --error=log/runh_%A_%a.err
 
 # #####################################################
-# #SBATCH --gres=gpu:1 # uncomment this line to request for a gpu if your program uses gpu
-#SBATCH --constraint=cpu # use this if you want to only use cpu
+#SBATCH --gres=gpu:1 # uncomment this line to request for a gpu if your program uses gpu
 
 sleep $(( (RANDOM%10) + 1 ))
 

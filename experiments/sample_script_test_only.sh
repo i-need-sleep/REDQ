@@ -12,8 +12,7 @@
 #SBATCH --error=log/runh_%A_%a.err
 
 # #####################################################
-# #SBATCH --gres=gpu:1 # uncomment this line to request for a gpu if your program uses gpu
-#SBATCH --constraint=cpu # use this if you want to only use cpu
+#SBATCH --gres=gpu:1 # uncomment this line to request for a gpu if your program uses gpu
 
 sleep $(( (RANDOM%10) + 1 ))
 
@@ -21,10 +20,16 @@ echo "SLURM_JOBID: " $SLURM_JOBID
 echo "SLURM_ARRAY_JOB_ID: " $SLURM_ARRAY_JOB_ID
 echo "SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
 
-module load anaconda3
+module purge                  
+module load anaconda3 glew/1.13 glfw/3.3 glog/0.3.3 mesa/19.0.5 llvm/7.0.1 gcc/7.3     
+module load anaconda3 cuda/11.1.1 
+
+nvidia-smi
+nvcc --version
+cd /gpfsnyu/scratch/yh2689/REDQ-student
+
 source deactivate
-source deactivate
-source activate rl
+source /gpfsnyu/packages/anaconda3/5.2.0/bin/activate keith
 
 echo ${SLURM_ARRAY_TASK_ID}
 python train_redq_sac_exp1-1-1.py --setting ${SLURM_ARRAY_TASK_ID} --debug
