@@ -222,7 +222,7 @@ if __name__ == '__main__':
     alpha=0.2
 
     env_names = ['Hopper-v2', 'Ant-v2']
-    batch_list = [43, 96, 256]
+    batch_list = [32, 96, 256]
     seed_list = [0, 1]
 
     setting_to_run = args.setting

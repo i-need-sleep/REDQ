@@ -210,7 +210,7 @@ if __name__ == '__main__':
     parser.add_argument('--seed', '-s', type=int, default=0)
     parser.add_argument('--epochs', type=int, default=-1) # -1 means use mbpo epochs
     parser.add_argument('--exp_name', type=str, default='redq_sac')
-    parser.add_argument('--data_dir', type=str, default='./data/1-2-3/')
+    parser.add_argument('--data_dir', type=str, default='./data/2/')
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--setting', type=int, default=0)
     args = parser.parse_args()

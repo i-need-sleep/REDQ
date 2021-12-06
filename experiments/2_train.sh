@@ -29,5 +29,5 @@ source deactivate
 source /gpfsnyu/packages/anaconda3/5.2.0/bin/activate keith
 
 echo ${SLURM_ARRAY_TASK_ID}
-python train_redq_sac_exp2_train.py --setting ${SLURM_ARRAY_TASK_ID} --debug
+python train_redq_sac_exp2_train.py --setting ${SLURM_ARRAY_TASK_ID}
 echo "DONE"

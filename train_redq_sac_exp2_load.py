@@ -12,5 +12,6 @@ from redq_modified.utils.logx import EpochLogger
 import joblib
 
 if __name__ == '__main__':
-    agent = joblib.load('./train/mr.agent')
-    print(agent)
+    agent = joblib.load('./trained/mr.agent')
+    print(agent.policy_net.state_dict())
+    print(agent.replay_buffer.obs1_buf)
