@@ -12,6 +12,23 @@ from redq_modified.utils.logx import EpochLogger
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns 
+import PIL.Image
+
+def render_state(s, name, a, n_step=7):
+    env = gym.make('Hopper-v2')
+    env.reset()
+    state = env.sim.get_state()
+    state.qpos[1:] = s.numpy()[:5]
+    state.qvel[:] = s.numpy()[5:]
+    env.sim.set_state(state)
+    rgb_array = env.render(mode='rgb_array')
+    PIL.Image.fromarray(rgb_array).save(f'./figures/2_renders/{name}_1.jpg')
+    env.step(a)
+    for _ in range(n_step):
+        env.step(env.action_space.sample())
+    rgb_array = env.render(mode='rgb_array')
+    PIL.Image.fromarray(rgb_array).save(f'./figures/2_renders/{name}_2.jpg')
+    return
 
 if __name__ == '__main__':
     agent = joblib.load('./trained/mr.agent')
@@ -40,9 +57,14 @@ if __name__ == '__main__':
     print(f'max Q: {high_q} at state {high_q_s}')
     print(f'min Q: {low_q} at state {low_q_s}')
 
+    # Render the states
+    render_state(high_q_s, 'high_q_s', a[high_q_idx, :])
+    render_state(low_q_s, 'low_q_s', a[low_q_idx, :])
+
+    # Plot a histogram
     sns.histplot(q_prediction_min.detach().numpy())
     plt.xlabel('Q value')
-    plt.savefig('./figures/2-1.png')
+    plt.savefig('./figures/2_plots/2-1.png')
 
     # 2.2
     _, _, _, log_prob_a_tilda, _, _, = agent.policy_net.forward(s, deterministic=False, return_log_prob=True)
@@ -50,4 +72,10 @@ if __name__ == '__main__':
     plt.clf()
     sns.histplot(entropy.detach().numpy())
     plt.xlabel('Entropy')
-    plt.savefig('./figures/2-2.png')
+    plt.savefig('./figures/2_plots/2-2.png')
+
+    # Also render the states with the highest/lowest entropy
+    high_entropy_idx = torch.argmax(entropy).item()
+    low_entropy_idx = torch.argmin(entropy).item()
+    render_state(s[high_entropy_idx, :], 'high_entropy_s', a[high_entropy_idx, :])
+    render_state(s[low_entropy_idx, :], 'low_entropy_s', a[low_entropy_idx, :])
