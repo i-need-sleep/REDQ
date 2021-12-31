@@ -1,0 +1,6 @@
+/var/spool/slurmd/job10568435/slurm_script: line 17: nvidia-smi: command not found
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
+Traceback (most recent call last):
+  File "train_redq_sac_exp2_load.py", line 77, in <module>
+    g._legend.remove()
+AttributeError: 'AxesSubplot' object has no attribute '_legend'

@@ -1,0 +1,2 @@
+/var/spool/slurmd/job10568437/slurm_script: line 17: nvidia-smi: command not found
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.

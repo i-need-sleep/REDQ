@@ -1,0 +1,15 @@
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2020 NVIDIA Corporation
+Built on Mon_Oct_12_20:09:46_PDT_2020
+Cuda compilation tools, release 11.1, V11.1.105
+Build cuda_11.1.TC455_06.29190527_0
+
+max Q: 372.6877136230469 at state tensor([ 1.4282, -0.1046, -0.3852, -0.2899, -0.8899,  2.5207,  2.2878,  0.5022,
+         2.2533, -1.9869,  1.2437])
+min Q: -75.81219482421875 at state tensor([ 1.3978e+00, -1.7675e-01,  3.6462e-03, -2.2788e-04,  8.6527e-01,
+        -5.3936e-01, -1.5836e+00, -1.4221e+00,  2.7596e-03, -9.2892e-01,
+         1.5833e+00])
+torch.Size([1000000, 1])
+tensor(-27.8426, grad_fn=<MinBackward1>)
+tensor(11.0023, grad_fn=<MaxBackward1>)
+DONE

@@ -33,7 +33,7 @@ def render_state(s, name, a, n_step=7):
 if __name__ == '__main__':
     agent = joblib.load('./trained/mr.agent')
 
-    # 2.1: Get load s,a
+    # 2.1: load s,a
     s = torch.tensor(agent.replay_buffer.obs1_buf)
     a = torch.tensor(agent.replay_buffer.acts_buf)
 
@@ -64,13 +64,19 @@ if __name__ == '__main__':
     # Plot a histogram
     sns.histplot(q_prediction_min.detach().numpy())
     plt.xlabel('Q value')
+    g = sns.histplot(entropy.detach().numpy())
+    g.legend_.remove()
     plt.savefig('./figures/2_plots/2-1.png')
 
     # 2.2
     _, _, _, log_prob_a_tilda, _, _, = agent.policy_net.forward(s, deterministic=False, return_log_prob=True)
     entropy = - log_prob_a_tilda
+    print(entropy.shape)
+    print(torch.min(entropy))
+    print(torch.max(entropy))
     plt.clf()
-    sns.histplot(entropy.detach().numpy())
+    g = sns.histplot(entropy.detach().numpy())
+    g.legend_.remove()
     plt.xlabel('Entropy')
     plt.savefig('./figures/2_plots/2-2.png')
 
